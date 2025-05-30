@@ -1,0 +1,60 @@
+.root {
+  position: relative;
+  display: inline-block;
+  margin-left: 24px;
+  vertical-align: middle;
+  font-size: 0;
+  line-height: 0;
+}
+
+.rootDisabled {
+  position: relative;
+  display: inline-block;
+  margin-left: 24px;
+  vertical-align: middle;
+  font-size: 0;
+  line-height: 0;
+  cursor: not-allowed;
+  opacity: 0.2;
+}
+
+.buttonDisabled {
+  color: var(--color-text);
+  font-family: var(--font-family-mono);
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+
+.input {
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.button {
+  color: var(--color-text);
+  font-family: var(--font-family-mono);
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+
+  &:hover {
+    color: var(--color-black-100);
+    background: var(--theme-text);
+  }
+}
