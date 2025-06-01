@@ -115,18 +115,21 @@ export default async function apiIntrospect(req, res) {
   }
 
   const filePath = path.join(repoRoot, `public`, `${name}.txt`);
+  const promptPath = path.join(repoRoot, `public`, `__prompt.txt`);
 
   if (!existsSync(filePath)) {
     return res.status(404).json({ error: true, data: null });
   }
 
   const transcript = await fs.readFile(filePath, 'utf-8');
+  const prompt = await fs.readFile(promptPath, 'utf-8');
   let normalizedTranscription = normalizeMultilineText(transcript);
 
   const query = `<transcript>
 "${normalizedTranscription}"
 </transcript>
 
+${prompt}
 ${Constants.Query.directives}`;
 
   let answer = await queryOllamaHTTP(query);

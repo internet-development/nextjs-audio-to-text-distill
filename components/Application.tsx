@@ -8,6 +8,7 @@ import * as Utilities from '@common/utilities';
 
 import CircularLoader from '@components/CircularLoader';
 import ActionUploadButton from '@components/ActionUploadButton';
+import TextArea from '@components/TextArea';
 
 const Action = (props) => {
   if (props.disabled) {
@@ -29,7 +30,12 @@ const Copy = (props) => {
   return <div className={styles.copy} {...props} />;
 };
 
+const Prompt = (props) => {
+  return <TextArea value={props.value} onChange={props.onChange}></TextArea>;
+};
+
 export default function Application({ children }) {
+  const [prompt, setPrompt] = React.useState('');
   const [current, setCurrent] = React.useState('');
   const [files, setFiles] = React.useState([]);
   const [uploading, setUploading] = React.useState(true);
@@ -58,18 +64,19 @@ export default function Application({ children }) {
 
   React.useEffect(() => {
     async function init() {
+      const promptResponse = await Queries.getData({ route: '/api/get-prompt' });
+      if (promptResponse) {
+        setPrompt(promptResponse.data);
+      }
+
       const response = await Queries.getData({ route: '/api/list' });
 
-      setFiles(response.data);
-
-      if (response.data && response.data.length) {
-        await onSelect(response.data[0]);
+      if (!response) {
         return;
       }
 
+      setFiles(response.data);
       setUploading(false);
-      setTranscribing(false);
-      setIntrospecting(false);
     }
 
     init();
@@ -132,6 +139,12 @@ export default function Application({ children }) {
             <Action
               disabled={uploading || transcribing || introspecting}
               onClick={async () => {
+                const confirm = window.confirm(`Are you sure you want to transcribe ${current}? This process may take over 5 minutes.`);
+
+                if (!confirm) {
+                  return;
+                }
+
                 if (Utilities.isEmpty(current)) {
                   alert('You need to select an audio file to create a transcription.');
                   return;
@@ -147,13 +160,19 @@ export default function Application({ children }) {
                 setTranscribing(false);
               }}
             >
-              ◎ Transcript
+              ◎ Transcribe
             </Action>
 
             {Utilities.isEmpty(transcription) ? null : (
               <Action
                 disabled={uploading || transcribing || introspecting}
                 onClick={async () => {
+                  const confirm = window.confirm('Are you sure you want to introspect on this transcript? This process may take over 5 minutes.');
+
+                  if (!confirm) {
+                    return;
+                  }
+
                   if (Utilities.isEmpty(current)) {
                     alert('You need to select an audio file to run a transcription.');
                     return;
@@ -186,7 +205,19 @@ export default function Application({ children }) {
       </div>
       <div className={styles.wide}>
         <div className={styles.section}>
-          <div className={styles.top}></div>
+          <div className={styles.top}>
+            <Action
+              disabled={uploading || transcribing || introspecting}
+              onClick={async () => {
+                const response = await Queries.getData({ route: '/api/update-prompt', body: { prompt } });
+              }}
+            >
+              ◎ Update Default Prompt
+            </Action>
+          </div>
+          <div className={styles.middle}>
+            <Prompt value={prompt} onChange={(e) => setPrompt(e.target.value)}></Prompt>
+          </div>
           <div className={styles.bottom}>
             <Copy>
               {introspecting ? (

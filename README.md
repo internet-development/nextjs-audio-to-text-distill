@@ -1,6 +1,6 @@
 # NEXTJS-OFFLINE-WHISPER-TO-LLM
 
-![Image](https://github.com/user-attachments/assets/dd864c3d-2499-4a59-9d61-68be4da442da)
+![Image](https://github.com/user-attachments/assets/128463cc-c5a9-4ba2-ac72-c4b751e41a80)
 
 This repository contains an offline-first, browser-based application developed with [Next.js](https://github.com/vercel/next.js/) that allows users to locally transcode audio recordings (successfully tested for audio lengths up to 20 minutes) into accurate, plain-text transcripts.
 

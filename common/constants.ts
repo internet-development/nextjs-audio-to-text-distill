@@ -6,8 +6,7 @@ export const MAX_SIZE_BYTES = 15728640;
 export const API = `https://api.internet.dev/api`;
 
 export const Query = {
-  directives: `- Produce 5 meaningful insights in as much detail as possible
-- Speak as one of the world's best professors without referencing yourself
+  directives: `
 - Return a response with <plain_text_response> and </plain_text_response> tags around the answer.`,
 };
 

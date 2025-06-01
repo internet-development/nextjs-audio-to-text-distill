@@ -1,0 +1,43 @@
+.textArea {
+  -webkit-appearance: none;
+  color: var(--color-gray-40);
+  font-family: var(--font-family-mono);
+  background: var(--theme-background);
+  box-sizing: border-box;
+  padding: 0px;
+  width: 100%;
+  font-size: var(--type-scale-fixed-small);
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  resize: none;
+  transition: 200ms ease all;
+  transition-property: width;
+  outline: 0;
+  border: 0;
+
+  &::placeholder {
+    opacity: 1;
+    color: var(--theme-border);
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--theme-foreground);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--theme-foreground-secondary);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-foreground-secondary);
+  }
+}

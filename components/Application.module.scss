@@ -109,6 +109,11 @@
   white-space: nowrap;
 }
 
+.middle {
+  border-bottom: 1px solid var(--theme-border);
+  padding: 24px;
+}
+
 .caption {
   text-align: center;
   font-size: var(--type-scale-fixed-small);
