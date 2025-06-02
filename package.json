@@ -7,12 +7,9 @@
   "license": "MIT",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next -p 10000",
+    "local": "next -p 10000",
     "llm": "OLLAMA_LOAD_TIMEOUT=30m OLLAMA_KEEP_ALIVE=10m OLLAMA_NOHISTORY=true ollama serve",
-    "build": "next build",
-    "start": "PORT=10000 next start",
-    "script": "ts-node -O '{\"module\":\"commonjs\"}' scripts/index.js",
-    "lint": "next lint"
+    "script": "ts-node -O '{\"module\":\"commonjs\"}' scripts/index.js"
   },
   "dependencies": {
     "aes-js": "^3.1.2",

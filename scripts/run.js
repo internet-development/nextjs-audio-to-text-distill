@@ -9,7 +9,7 @@ import { nodewhisper } from 'nodejs-whisper';
 
 const AGENT_LABEL = 'LOCALHOST 0.0.1';
 const NAME = `run.js`;
-const AUDIO_PATH = path.resolve(__dirname, '../public/book-three-meditations.mp3');
+const AUDIO_PATH = path.resolve(__dirname, '../public/the-motivation-mindset-with-risa-williams.mp3');
 const BASE_NAME = path.basename(AUDIO_PATH, path.extname(AUDIO_PATH));
 
 const THOUGHT_COLOR = '\x1b[90m';

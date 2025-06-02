@@ -210,6 +210,10 @@ export default function Application({ children }) {
               disabled={uploading || transcribing || introspecting}
               onClick={async () => {
                 const response = await Queries.getData({ route: '/api/update-prompt', body: { prompt } });
+
+                if (response) {
+                  alert('Your new prompt is saved.');
+                }
               }}
             >
               ◎ Update Default Prompt
